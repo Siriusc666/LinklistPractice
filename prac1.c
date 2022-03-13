@@ -10,6 +10,7 @@ typedef struct node {
     /********** Begin **********/
 Node* CreatList();
 void ShowList(Node* head);
+int Length(Node* head);
 
 Node* CreatList()
 {
@@ -43,11 +44,25 @@ void ShowList(Node* head)
     }
 }
 
+int Length(Node* head)
+{
+    Node *cur;
+    cur = head;
+    int length = 0;
+    while(cur != NULL)
+    {
+        length++;
+        cur = cur->next;
+    }
+    return length;
+}
+
     /**********  End  **********/
 int main(void)  
 {  
     Node *phead; 
     phead = CreatList();  
     ShowList(phead);
+    printf("%d", Length(phead));  
     return 0;  
 }
