@@ -6,12 +6,8 @@ typedef struct node {
     struct node *next;
 }Node;
 
-     // è¯·åœ¨æ­¤æ·»åŠ ä½ çš„ä»£ç 
-    /********** Begin **********/
-Node* CreatList();
-void ShowList(Node* head);
-int Length(Node* head);
-
+     // ÇëÔÚ´ËÌí¼ÓÄãµÄ´úÂë
+    /********** Begin *********/
 Node* CreatList()
 {
     int lenth;
@@ -44,25 +40,30 @@ void ShowList(Node* head)
     }
 }
 
-int Length(Node* head)
-{
-    Node *cur;
-    cur = head;
-    int length = 0;
-    while(cur != NULL)
-    {
-        length++;
-        cur = cur->next;
-    }
-    return length;
-}
+Node* ReverseList(Node *head)    
+{    
+    Node *newHead;    
+    if(head==NULL||head->next==NULL)    
+        return head;    
+    /*µİ¹é*/    
+    newHead=ReverseList(head->next);    
+    /*»ØËİ£º½«µ±Ç°±íÍ·½áµãÁ´½Óµ½ÄæĞòÁ´±íµÄÎ²²¿*/    
+    head->next->next=head;    
+    head->next=NULL;    
+    return newHead;    
+}    
+
 
     /**********  End  **********/
 int main(void)  
 {  
-    Node *phead; 
+    Node *phead;  
     phead = CreatList();  
-    ShowList(phead);
-    printf("%d", Length(phead));  
+    printf("Á´±íÄæÖÃÇ°µÄÊı¾İ:\n");  
+    ShowList(phead);  
+    phead = ReverseList(phead); 
+    printf("\n");
+    printf("Á´±íÄæÖÃºóµÄÊı¾İ:\n");  
+    ShowList(phead);  
     return 0;  
-}
+}   
